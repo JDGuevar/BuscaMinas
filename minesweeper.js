@@ -75,7 +75,7 @@ function RightClick(){
     }
     event.preventDefault();
     let tile = this;
-    if (tile.classList.contains("tile-clicked") || flagsCount == 0) {
+    if (tile.classList.contains("tile-clicked")) {
         return;
     }
     if (tile.classList.contains("tile-flagged")) {
@@ -88,16 +88,18 @@ function RightClick(){
         document.getElementById("flags-count").innerText = flagsCount;
     }
     else {
-        tile.classList.add("tile-flagged");
-        tile.innerText = "🚩";
-        audio_banderita.play();
-        flagsCount -= 1;
+        if (flagsCount > 0){
+            tile.classList.add("tile-flagged");
+            tile.innerText = "🚩";
+            audio_banderita.currentTime = 0.5;
+            audio_banderita.play();
+            flagsCount -= 1;
 
-        if (minesLocation.includes(tile.id)) {
-            minesCount -= 1;
+            if (minesLocation.includes(tile.id)) {
+                minesCount -= 1;
+            }
+            document.getElementById("flags-count").innerText =flagsCount;
         }
-        document.getElementById("flags-count").innerText =flagsCount;
-        
     }
 
     if (flagsCount == 0) {

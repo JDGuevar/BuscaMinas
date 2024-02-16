@@ -1,15 +1,17 @@
 let tablero = [];
-let rows = 8;
-let columns = 8;
+let rows = 10;
+let columns = 10;
 
 let minesCount = 10;
 let flagsCount = minesCount;
 let minesLocation = []; // "2-2", "3-4", "2-1"
 
 let tilesClicked = 0; //goal to click all tiles except the ones containing mines
-let flagbool =false;
+let flagbool = false;
 
 let gameOver = false;
+
+
 
 window.onload = function() {
     startGame();
@@ -70,7 +72,7 @@ function RightClick(){
     }
     event.preventDefault();
     let tile = this;
-    if (tile.classList.contains("tile-clicked")) {
+    if (tile.classList.contains("tile-clicked") || flagsCount == 0) {
         return;
     }
     if (tile.classList.contains("tile-flagged")) {
@@ -92,10 +94,11 @@ function RightClick(){
         }
         document.getElementById("flags-count").innerText =flagsCount;
     }
+
     if (flagsCount == 0) {
         document.getElementById("flags-count").innerText = "No flags left";
         if (minesCount == 0) {
-            document.getElementById("mines-count").innerText = "Congratulations! You won!";
+            document.getElementById("flags-count").innerText = "Congratulations! You won!";
             gameOver = true;
         }
     }
@@ -142,6 +145,11 @@ function checkMine(r, c) {
         return;
     }
 
+    if (tablero[r][c].classList.contains("tile-flagged")) {
+        flagsCount+= 1;
+        document.getElementById("flags-count").innerText = flagsCount;
+    }
+
     tablero[r][c].classList.add("tile-clicked");
     tilesClicked += 1;
 
@@ -182,11 +190,6 @@ function checkMine(r, c) {
         checkMine(r+1, c);      //bottom
         checkMine(r+1, c+1);    //bottom right
     }
-
-    if (tilesClicked == rows * columns - minesCount) {
-        document.getElementById("mines-count").innerText = "Cleared";
-        gameOver = true;
-    }
 }
 
 function checkTile(r, c) {
@@ -198,3 +201,49 @@ function checkTile(r, c) {
     }
     return 0;
 }
+
+function levelEasy() {
+    rows = 10;
+    columns = 10;
+    minesCount = 10;
+    flagsCount = minesCount;
+
+    document.getElementById("tablero").innerHTML = "";
+    tablero = [];
+    minesLocation = [];
+    tilesClicked = 0;
+    gameOver = false;
+
+    startGame();
+}
+
+function levelMedium() {
+    rows = 15;
+    columns = 22;
+    minesCount = 40;
+    flagsCount = minesCount;
+
+    document.getElementById("tablero").innerHTML = "";
+    tablero = [];
+    minesLocation = [];
+    tilesClicked = 0;
+    gameOver = false;
+
+    startGame();
+}
+
+function levelHard() {
+    rows = 16;
+    columns = 36;
+    minesCount = 99;
+    flagsCount = minesCount;
+
+    document.getElementById("tablero").innerHTML = "";
+    tablero = [];
+    minesLocation = [];
+    tilesClicked = 0;
+    gameOver = false;
+
+    startGame();
+}
+

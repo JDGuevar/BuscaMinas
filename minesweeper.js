@@ -128,11 +128,18 @@ function revealMines() {
             let tile = tablero[r][c];
             if (minesLocation.includes(tile.id)) {
                 tile.innerText = "💣";
-                tile.style.backgroundColor = "red";                
+                tile.style.backgroundColor = "red";
+
+                // Add the shake class to the body element
+                document.body.classList.add('shake');
             }
         }
     }
 }
+
+document.body.addEventListener('animationend', function() {
+    document.body.classList.remove('shake');
+});
 
 function checkMine(r, c) {
     if (r < 0 || r >= rows || c < 0 || c >= columns) {

@@ -17,6 +17,9 @@ window.onload = function() {
     startGame();
 }
 
+const audio_perder = new Audio("perder-incorrecto-no-valido.mp3");
+const audio_banderita = new Audio("banderita.mp3");
+
 function setMines() {
     // minesLocation.push("2-2");
     // minesLocation.push("2-3");
@@ -87,12 +90,14 @@ function RightClick(){
     else {
         tile.classList.add("tile-flagged");
         tile.innerText = "🚩";
+        audio_banderita.play();
         flagsCount -= 1;
 
         if (minesLocation.includes(tile.id)) {
             minesCount -= 1;
         }
         document.getElementById("flags-count").innerText =flagsCount;
+        
     }
 
     if (flagsCount == 0) {
@@ -131,7 +136,8 @@ function revealMines() {
             let tile = tablero[r][c];
             if (minesLocation.includes(tile.id)) {
                 tile.innerText = "💣";
-                tile.style.backgroundColor = "red";                
+                tile.style.backgroundColor = "red";
+                audio_perder.play();
             }
         }
     }

@@ -55,6 +55,13 @@ function startGame() {
         tablero.push(row);
     }
 
+    // Set the width and height of the tablero element
+    let tileSize = 50; // width and height of each tile
+    let tableroWidth = columns * tileSize;
+    let tableroHeight = rows * tileSize;
+    document.getElementById("tablero").style.width = tableroWidth + "px";
+    document.getElementById("tablero").style.height = tableroHeight + "px";
+
     console.log(tablero);
 }
 function RightClick(){

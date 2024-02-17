@@ -152,7 +152,12 @@ function revealMines() {
         for (let c = 0; c < columns; c++) {
             let tile = tablero[r][c];
             if (minesLocation.includes(tile.id)) {
-                tile.innerText = "💣";
+                tile.classList.add("tile-bomb");
+                let img = document.createElement("img");
+                img.src = "bomba.svg";
+                tile.appendChild(img);
+                img.style.width = "60px";
+                img.style.height = "60px";
                 tile.style.backgroundColor = "red";
                 audio_perder.play();
                 // Apply the shake animation to the #tablero element

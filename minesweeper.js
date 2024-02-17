@@ -69,38 +69,53 @@ function startGame() {
 
     console.log(tablero);
 }
-function RightClick(){
+let flaggedTiles = [];
+
+function RightClick() {
     if (gameOver) {
         return;
     }
+
     event.preventDefault();
+
     let tile = this;
+
     if (tile.classList.contains("tile-clicked")) {
         return;
     }
+
     if (tile.classList.contains("tile-flagged")) {
         tile.classList.remove("tile-flagged");
+        tile.classList.remove("tile-flagged-fade");
         tile.innerText = "";
+
+        let flagIndex = flaggedTiles.indexOf(tile.id);
+        if (flagIndex !== -1) {
+            flaggedTiles.splice(flagIndex, 1);
+        }
+
         flagsCount += 1;
         if (minesLocation.includes(tile.id)) {
             minesCount += 1;
         }
-        document.getElementById("flags-count").innerText = flagsCount;
-    }
-    else {
-        if (flagsCount > 0){
+    } else {
+        if (flagsCount > 0) {
             tile.classList.add("tile-flagged");
+            tile.classList.add("tile-flagged-fade");
             tile.innerText = "🚩";
             audio_banderita.currentTime = 0.5;
             audio_banderita.play();
-            flagsCount -= 1;
 
+            flaggedTiles.push(tile.id);
+
+            flagsCount -= 1;
             if (minesLocation.includes(tile.id)) {
                 minesCount -= 1;
             }
-            document.getElementById("flags-count").innerText =flagsCount;
         }
     }
+
+    document.getElementById("flags-count").innerText = flagsCount;
 
     if (flagsCount == 0) {
         document.getElementById("flags-count").innerText = "No flags left";
@@ -140,6 +155,12 @@ function revealMines() {
                 tile.innerText = "💣";
                 tile.style.backgroundColor = "red";
                 audio_perder.play();
+                // Apply the shake animation to the #tablero element
+                document.getElementById("tablero").style.animation = "shake 0.5s";
+                // Remove the animation after it has finished
+                setTimeout(() => {
+                    document.getElementById("tablero").style.animation = "";
+                }, 500);
             }
         }
     }

@@ -3,18 +3,30 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Minesweeper</title>
+        <title>BUSCAMINAS</title>
         <link rel="stylesheet" href="minesweeper.css">
 
+        <style>
+
+            body {
+                background-image: url('fondo.webp'); /* Reemplaza 'ruta/de/la/imagen.jpg' con la ruta de tu imagen */
+                background-size: cover;
+                background-repeat: no-repeat; /* Esto evita que la imagen de fondo se repita */
+                /* Opcional: puedes agregar más estilos para el contenido */
+                color: white; /* Cambia el color del texto para que sea legible */
+
+            }
+        </style>
     </head>
 
     <body>
-        <h1>Flags: <span id="flags-count">0</span></h1>
+        <h1>Banderas: <span id="flags-count">0</span></h1>
         <div id="tablero"></div>
         <div id="difficulty">
             <button id="easy" onclick="levelEasy()">Easy</button>
             <button id="medium" onclick="levelMedium()">Medium</button>
             <button id="hard" onclick="levelHard()">Hard</button>
+
         </div>
     </body>
     <script src="minesweeper.js"></script>

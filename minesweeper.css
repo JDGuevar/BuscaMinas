@@ -35,7 +35,7 @@ body {
 }
 
 #tablero{
-    border: 10px solid darkgray;
+    border: 10px solid midnightblue;
     background-color: lightgray;
 
     margin: 0 auto;
@@ -46,7 +46,7 @@ body {
 #tablero div {
     width: 48px;
     height: 48px;
-    border: 1px solid whitesmoke;
+    border: 1px solid cornflowerblue;
 
     /* text */
     font-size: 30px;
@@ -88,7 +88,7 @@ body {
 }
 
 .x8 {
-    color: gray;
+    color: grey;
 }
 
 #flag-button {

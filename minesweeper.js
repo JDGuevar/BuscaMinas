@@ -17,8 +17,10 @@ window.onload = function() {
     startGame();
 }
 
-const audio_perder = new Audio("perder-incorrecto-no-valido.mp3");
-const audio_banderita = new Audio("banderita.mp3");
+const audio_perder = new Audio("perder.mp3");
+audio_perder.volume = 0.2;
+
+const audio_banderita = new Audio("hmm.mp3");
 
 function setMines() {
     // minesLocation.push("2-2");
@@ -56,6 +58,7 @@ function startGame() {
             tile.addEventListener("contextmenu", RightClick);
             document.getElementById("tablero").append(tile);
             row.push(tile);
+
         }
         tablero.push(row);
     }
@@ -102,8 +105,13 @@ function RightClick() {
         if (flagsCount > 0) {
             tile.classList.add("tile-flagged");
             tile.classList.add("tile-flagged-fade");
-            tile.innerText = "🚩";
-            audio_banderita.currentTime = 0.5;
+            let img = document.createElement("img");
+            img.src = "banderita.svg";
+            tile.appendChild(img);
+            img.style.width = "90px";
+            img.style.height = "90px";
+
+
             audio_banderita.play();
 
             flaggedTiles.push(tile.id);
@@ -158,7 +166,7 @@ function revealMines() {
                 tile.appendChild(img);
                 img.style.width = "60px";
                 img.style.height = "60px";
-                tile.style.backgroundColor = "red";
+                tile.style.backgroundColor = "#c44d4d";
                 audio_perder.play();
                 // Apply the shake animation to the #tablero element
                 document.getElementById("tablero").style.animation = "shake 0.5s";
@@ -264,6 +272,7 @@ function levelMedium() {
     gameOver = false;
 
     startGame();
+
 }
 
 function levelHard() {

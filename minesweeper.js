@@ -7,6 +7,7 @@ let flagsCount = minesCount;
 let minesLocation = []; // "2-2", "3-4", "2-1"
 
 let tilesClicked = 0; //goal to click all tiles except the ones containing mines
+let tileSize = 30; // width and height of each tile
 
 let gameOver = false;
 
@@ -45,7 +46,7 @@ function startGame() {
     document.getElementById("flags-count").innerText = flagsCount;
     setMines();
 
-    let tileSize = 30; // width and height of each tile
+
     let tableroWidth = columns * tileSize;
     let tableroHeight = rows * tileSize;
 
@@ -92,7 +93,6 @@ function RightClick() {
 
     if (tile.classList.contains("tile-flagged")) {
         tile.classList.remove("tile-flagged");
-        tile.classList.remove("tile-flagged-fade");
         tile.innerText = "";
 
         let flagIndex = flaggedTiles.indexOf(tile.id);
@@ -107,12 +107,11 @@ function RightClick() {
     } else {
         if (flagsCount > 0) {
             tile.classList.add("tile-flagged");
-            tile.classList.add("tile-flagged-fade");
             let img = document.createElement("img");
             img.src = "banderita.svg";
             tile.appendChild(img);
-            img.style.width = "90px";
-            img.style.height = "90px";
+            img.style.width = tileSize + 20 + "px";
+            img.style.height = tileSize + 20 + "px";
 
 
             audio_banderita.play();
@@ -161,13 +160,14 @@ function revealMines() {
     for (let r= 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             let tile = tablero[r][c];
-            if (minesLocation.includes(tile.id)) {
+            if (minesLocation.includes(tile.id) && !tile.classList.contains("tile-flagged")) {
+
                 tile.classList.add("tile-bomb");
                 let img = document.createElement("img");
                 img.src = "bomba.svg";
                 tile.appendChild(img);
-                img.style.width = "60px";
-                img.style.height = "60px";
+                img.style.width = tileSize + 10 + "px";
+                img.style.height = tileSize + 10 + "px";
                 tile.style.backgroundColor = "#c44d4d";
                 audio_perder.play();
                 // Apply the shake animation to the #tablero element

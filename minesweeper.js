@@ -18,10 +18,18 @@ window.onload = function() {
     startGame();
 }
 
+function shake() {
+    document.getElementById("tablero").style.animation = "shake 0.5s";
+    setTimeout(() => {
+        document.getElementById("tablero").style.animation = "";
+    }, 500);
+}
+
 const audio_perder = new Audio("perder.mp3");
-audio_perder.volume = 0.2;
+audio_perder.volume = 0.05;
 
 const audio_banderita = new Audio("hmm.mp3");
+audio_banderita.volume = 0.05;
 
 function setMines() {
     // minesLocation.push("2-2");
@@ -136,6 +144,7 @@ function RightClick() {
         if (minesCount == 0 && tilesClicked == (rows * columns) - mines && flagsCount == 0) {
             document.getElementById("flags-count").innerText = "Congratulations! You won!";
             gameOver = true;
+            shake();
         }
     }
 }
@@ -204,6 +213,7 @@ function checkMine(r, c) {
     if (minesCount == 0 && tilesClicked == (rows * columns) - mines && flagsCount == 0){
         document.getElementById("flags-count").innerText = "Congratulations! You won!";
         gameOver = true;
+        shake();
     }
 
     let minesFound = 0;
@@ -246,7 +256,7 @@ function checkMine(r, c) {
 }
 
 function checkTile(r, c) {
-    if (r < 0 || r >= rows || c < 0 || c >= columns) {
+    if (r < 0  || r>= rows || c < 0 || c >= columns) {
         return 0;
     }
     if (minesLocation.includes(r.toString() + "-" + c.toString())) {

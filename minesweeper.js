@@ -7,7 +7,7 @@ let flagsCount = minesCount;
 let minesLocation = []; // "2-2", "3-4", "2-1"
 
 let tilesClicked = 0; //goal to click all tiles except the ones containing mines
-let tileSize = 30; // width and height of each tile
+let tileSize = 35; // width and height of each tile
 
 let gameOver = false;
 

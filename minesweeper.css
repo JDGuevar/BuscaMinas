@@ -56,6 +56,22 @@ body {
     background-color: darkgrey;
 }
 
+.btn-facil {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-medio {
+    background-color: #6c757d;
+    color: #fff;
+    margin-left: 10px; /* solo para separar los botones en el ejemplo */
+}
+.btn-dificil {
+    background-color: darkred;
+    color: #fff;
+    margin-left: 10px; /* solo para separar los botones en el ejemplo */
+}
+
 .x1 {
     color: blue;
 }

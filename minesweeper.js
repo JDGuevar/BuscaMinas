@@ -1,19 +1,26 @@
 let tablero = [];
-let rows = 8;
-let columns = 8;
+let rows = 10;
+let columns = 10;
 
 let minesCount = 10;
 let flagsCount = minesCount;
 let minesLocation = []; // "2-2", "3-4", "2-1"
 
 let tilesClicked = 0; //goal to click all tiles except the ones containing mines
-let flagbool =false;
+let flagbool = false;
 
 let gameOver = false;
+
+
 
 window.onload = function() {
     startGame();
 }
+
+const audio_perder = new Audio("perder.mp3");
+audio_perder.volume = 0.2;
+
+const audio_banderita = new Audio("hmm.mp3");
 
 function setMines() {
     // minesLocation.push("2-2");
@@ -51,6 +58,7 @@ function startGame() {
             tile.addEventListener("contextmenu", RightClick);
             document.getElementById("tablero").append(tile);
             row.push(tile);
+
         }
         tablero.push(row);
     }
@@ -64,38 +72,63 @@ function startGame() {
 
     console.log(tablero);
 }
-function RightClick(){
+let flaggedTiles = [];
+
+function RightClick() {
     if (gameOver) {
         return;
     }
+
     event.preventDefault();
+
     let tile = this;
+
     if (tile.classList.contains("tile-clicked")) {
         return;
     }
+
     if (tile.classList.contains("tile-flagged")) {
         tile.classList.remove("tile-flagged");
+        tile.classList.remove("tile-flagged-fade");
         tile.innerText = "";
+
+        let flagIndex = flaggedTiles.indexOf(tile.id);
+        if (flagIndex !== -1) {
+            flaggedTiles.splice(flagIndex, 1);
+        }
+
         flagsCount += 1;
         if (minesLocation.includes(tile.id)) {
             minesCount += 1;
         }
-        document.getElementById("flags-count").innerText = flagsCount;
-    }
-    else {
-        tile.classList.add("tile-flagged");
-        tile.innerText = "🚩";
-        flagsCount -= 1;
+    } else {
+        if (flagsCount > 0) {
+            tile.classList.add("tile-flagged");
+            tile.classList.add("tile-flagged-fade");
+            let img = document.createElement("img");
+            img.src = "banderita.svg";
+            tile.appendChild(img);
+            img.style.width = "90px";
+            img.style.height = "90px";
 
-        if (minesLocation.includes(tile.id)) {
-            minesCount -= 1;
+
+            audio_banderita.play();
+
+            flaggedTiles.push(tile.id);
+
+            flagsCount -= 1;
+            if (minesLocation.includes(tile.id)) {
+                minesCount -= 1;
+            }
         }
-        document.getElementById("flags-count").innerText =flagsCount;
     }
+
+    document.getElementById("flags-count").innerText = flagsCount;
+
     if (flagsCount == 0) {
         document.getElementById("flags-count").innerText = "No flags left";
         if (minesCount == 0) {
-            document.getElementById("mines-count").innerText = "Congratulations! You won!";
+            document.getElementById("flags-count").innerText = "Congratulations! You won!";
             gameOver = true;
         }
     }
@@ -127,8 +160,20 @@ function revealMines() {
         for (let c = 0; c < columns; c++) {
             let tile = tablero[r][c];
             if (minesLocation.includes(tile.id)) {
-                tile.innerText = "💣";
-                tile.style.backgroundColor = "red";                
+                tile.classList.add("tile-bomb");
+                let img = document.createElement("img");
+                img.src = "bomba.svg";
+                tile.appendChild(img);
+                img.style.width = "60px";
+                img.style.height = "60px";
+                tile.style.backgroundColor = "#c44d4d";
+                audio_perder.play();
+                // Apply the shake animation to the #tablero element
+                document.getElementById("tablero").style.animation = "shake 0.5s";
+                // Remove the animation after it has finished
+                setTimeout(() => {
+                    document.getElementById("tablero").style.animation = "";
+                }, 500);
             }
         }
     }
@@ -140,6 +185,11 @@ function checkMine(r, c) {
     }
     if (tablero[r][c].classList.contains("tile-clicked")) {
         return;
+    }
+
+    if (tablero[r][c].classList.contains("tile-flagged")) {
+        flagsCount+= 1;
+        document.getElementById("flags-count").innerText = flagsCount;
     }
 
     tablero[r][c].classList.add("tile-clicked");
@@ -182,11 +232,6 @@ function checkMine(r, c) {
         checkMine(r+1, c);      //bottom
         checkMine(r+1, c+1);    //bottom right
     }
-
-    if (tilesClicked == rows * columns - minesCount) {
-        document.getElementById("mines-count").innerText = "Cleared";
-        gameOver = true;
-    }
 }
 
 function checkTile(r, c) {
@@ -198,3 +243,50 @@ function checkTile(r, c) {
     }
     return 0;
 }
+
+function levelEasy() {
+    rows = 10;
+    columns = 10;
+    minesCount = 10;
+    flagsCount = minesCount;
+
+    document.getElementById("tablero").innerHTML = "";
+    tablero = [];
+    minesLocation = [];
+    tilesClicked = 0;
+    gameOver = false;
+
+    startGame();
+}
+
+function levelMedium() {
+    rows = 15;
+    columns = 22;
+    minesCount = 40;
+    flagsCount = minesCount;
+
+    document.getElementById("tablero").innerHTML = "";
+    tablero = [];
+    minesLocation = [];
+    tilesClicked = 0;
+    gameOver = false;
+
+    startGame();
+
+}
+
+function levelHard() {
+    rows = 16;
+    columns = 36;
+    minesCount = 99;
+    flagsCount = minesCount;
+
+    document.getElementById("tablero").innerHTML = "";
+    tablero = [];
+    minesLocation = [];
+    tilesClicked = 0;
+    gameOver = false;
+
+    startGame();
+}
+

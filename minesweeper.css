@@ -1,3 +1,33 @@
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes flag-fade {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.tile-flagged-fade {
+    animation: flag-fade 0.5s ease-in-out;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -5,7 +35,7 @@ body {
 }
 
 #tablero{
-    border: 10px solid darkgray;
+    border: 10px solid midnightblue;
     background-color: lightgray;
 
     margin: 0 auto;
@@ -16,7 +46,7 @@ body {
 #tablero div {
     width: 48px;
     height: 48px;
-    border: 1px solid whitesmoke;
+    border: 1px solid cornflowerblue;
 
     /* text */
     font-size: 30px;
@@ -58,7 +88,7 @@ body {
 }
 
 .x8 {
-    color: gray;
+    color: grey;
 }
 
 #flag-button {

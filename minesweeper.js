@@ -219,13 +219,7 @@ function levelEasy() {
     minesCount = 10;
     flagsCount = minesCount;
 
-    document.getElementById("tablero").innerHTML = "";
-    tablero = [];
-    minesLocation = [];
-    tilesClicked = 0;
-    gameOver = false;
-
-    startGame();
+    reset()
 }
 
 function levelMedium() {
@@ -234,13 +228,7 @@ function levelMedium() {
     minesCount = 40;
     flagsCount = minesCount;
 
-    document.getElementById("tablero").innerHTML = "";
-    tablero = [];
-    minesLocation = [];
-    tilesClicked = 0;
-    gameOver = false;
-
-    startGame();
+    reset()
 }
 
 function levelHard() {
@@ -249,6 +237,10 @@ function levelHard() {
     minesCount = 99;
     flagsCount = minesCount;
 
+    reset()
+}
+
+function reset(){
     document.getElementById("tablero").innerHTML = "";
     tablero = [];
     minesLocation = [];

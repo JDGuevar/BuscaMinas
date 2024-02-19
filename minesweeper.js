@@ -2,7 +2,9 @@ let tablero = [];
 let rows = 10;
 let columns = 10;
 
-let minesCount = 10;
+let mines = 10;
+
+let minesCount = mines;
 let flagsCount = minesCount;
 let minesLocation = []; // "2-2", "3-4", "2-1"
 
@@ -130,7 +132,8 @@ function RightClick() {
 
     if (flagsCount == 0) {
         document.getElementById("flags-count").innerText = "No flags left";
-        if (minesCount == 0) {
+
+        if (minesCount == 0 && tilesClicked == (rows * columns) - mines && flagsCount == 0) {
             document.getElementById("flags-count").innerText = "Congratulations! You won!";
             gameOver = true;
         }
@@ -196,6 +199,11 @@ function checkMine(r, c) {
     tablero[r][c].classList.add("tile-clicked");
     tilesClicked += 1;
 
+    if (minesCount == 0 && tilesClicked == (rows * columns) - mines && flagsCount == 0){
+        document.getElementById("flags-count").innerText = "Congratulations! You won!";
+        gameOver = true;
+    }
+
     let minesFound = 0;
 
     //top 3
@@ -248,7 +256,8 @@ function checkTile(r, c) {
 function levelEasy() {
     rows = 10;
     columns = 10;
-    minesCount = 10;
+    mines = 10;
+    minesCount = mines;
     flagsCount = minesCount;
 
     reset()
@@ -257,7 +266,8 @@ function levelEasy() {
 function levelMedium() {
     rows = 18;
     columns = 18;
-    minesCount = 40;
+    mines = 40;
+    minesCount = mines;
     flagsCount = minesCount;
 
     reset()
@@ -266,7 +276,8 @@ function levelMedium() {
 function levelHard() {
     rows = 24;
     columns = 24;
-    minesCount = 99;
+    mines = 99;
+    minesCount = mines;
     flagsCount = minesCount;
 
     reset()
@@ -281,4 +292,3 @@ function reset(){
 
     startGame();
 }
-

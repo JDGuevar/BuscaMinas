@@ -7,10 +7,8 @@ let flagsCount = minesCount;
 let minesLocation = []; // "2-2", "3-4", "2-1"
 
 let tilesClicked = 0; //goal to click all tiles except the ones containing mines
-let flagbool = false;
 
 let gameOver = false;
-
 
 
 window.onload = function() {
@@ -45,6 +43,10 @@ function startGame() {
     document.getElementById("flags-count").innerText = flagsCount;
     setMines();
 
+    let tileSize = 30; // width and height of each tile
+    let tableroWidth = columns * tileSize;
+    let tableroHeight = rows * tileSize;
+
     //populate our tablero
     for (let r = 0; r < rows; r++) {
         let row = [];
@@ -52,6 +54,9 @@ function startGame() {
             //<div id="0-0"></div>
             let tile = document.createElement("div");
             tile.id = r.toString() + "-" + c.toString();
+            tile.style.width = tileSize - 2 + "px";
+            tile.style.height = tileSize - 2 + "px";
+            tile.style.fontSize = tileSize * 0.70 + "px";
             tile.addEventListener("click", clickTile);
             tile.addEventListener("contextmenu", RightClick);
             document.getElementById("tablero").append(tile);
@@ -61,9 +66,7 @@ function startGame() {
     }
 
     // Set the width and height of the tablero element
-    let tileSize = 50; // width and height of each tile
-    let tableroWidth = columns * tileSize;
-    let tableroHeight = rows * tileSize;
+
     document.getElementById("tablero").style.width = tableroWidth + "px";
     document.getElementById("tablero").style.height = tableroHeight + "px";
 
@@ -226,8 +229,8 @@ function levelEasy() {
 }
 
 function levelMedium() {
-    rows = 15;
-    columns = 22;
+    rows = 18;
+    columns = 18;
     minesCount = 40;
     flagsCount = minesCount;
 
@@ -241,8 +244,8 @@ function levelMedium() {
 }
 
 function levelHard() {
-    rows = 16;
-    columns = 36;
+    rows = 24;
+    columns = 24;
     minesCount = 99;
     flagsCount = minesCount;
 

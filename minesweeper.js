@@ -182,6 +182,8 @@ function revealMines() {
                     document.getElementById("tablero").style.animation = "";
                 }, 500);
             }
+
+            if (minesLocation.includes(tile.id) && tile.classList.contains("tile-flagged")) tile.style.backgroundColor = "#c44d4d";
         }
     }
 }

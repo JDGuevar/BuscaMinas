@@ -101,9 +101,11 @@ function RightClick() {
         }
 
         flagsCount += 1;
+
         if (minesLocation.includes(tile.id)) {
             minesCount += 1;
         }
+        document.getElementById("flags-count").innerText = flagsCount;
     } else {
         if (flagsCount > 0) {
             tile.classList.add("tile-flagged");

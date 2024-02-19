@@ -184,10 +184,7 @@ function revealMines() {
 }
 
 function checkMine(r, c) {
-    if (r < 0 || r >= rows || c < 0 || c >= columns) {
-        return;
-    }
-    if (tablero[r][c].classList.contains("tile-clicked")) {
+    if (r < 0 || r >= rows || c < 0 || c >= columns || tablero[r][c].classList.contains("tile-clicked")) {
         return;
     }
 

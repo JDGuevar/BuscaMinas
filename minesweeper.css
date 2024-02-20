@@ -12,20 +12,15 @@
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-@keyframes flag-fade {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 1;
-    }
+@keyframes fall {
+    0% { transform: translateY(-10px) rotate(1deg); }
+    100% { transform: translateY(0) rotate(-1deg); }
 }
 
-.tile-flagged-fade {
-    animation: flag-fade 0.5s ease-in-out;
+@keyframes leave {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-10px) rotate(-20deg); }
+    100% { transform: translateX(200px) rotate(180deg) scale(5%); }
 }
 
 body {
@@ -33,78 +28,38 @@ body {
     font-weight: bold;
     text-align: center;
 }
-
 #tablero{
-    border: 7px solid darkblue;
-    border-radius: 20px;
-    background-color: #F0E68C;
+    border: 10px solid midnightblue;
+    background-color: lightgray;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
 }
-
-
 #tablero div {
-    border: 1px solid darkblue;
-    border-radius: 2px;
-
+    border: 1px solid whitesmoke;
     /* text */
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .tile-clicked {
     background-color: darkgrey;
 }
-
-.x1 {
-    color: blue;
-}
-
-.x2 {
-    color: green;
-}
-
-.x3 {
-    color: red;
-}
-
-.x4 {
-    color: navy;
-}
-
-.x5 {
-    color: brown;
-}
-
-.x6 {
-    color: teal;
-}
-
-.x7 {
-    color: black;
-}
-
-.x8 {
-    color: grey;
-}
 .btn-facil {
-    background-color: #008000;
+    background-color: #007bff;
     color: #fff;
 }
-
 .btn-medio {
-    background-color: #FF69B4;
+    background-color: #6c757d;
     color: #fff;
-    margin-left: 10px;
-
+    margin-left: 10px; /* solo para separar los botones en el ejemplo */
 }
 .btn-dificil {
-    background-color: #FF0000;
+    background-color: darkred;
     color: #fff;
-    margin-left: 10px;
+    margin-left: 10px; /* solo para separar los botones en el ejemplo */
 }
+
 .btn {
     border: none;
     border-radius: 20px;
@@ -113,32 +68,28 @@ body {
     font-size: 16px;
     margin-top: 80px;
 }
-.contenedor {
-    position: relative;
 
+.x1 {
+    color: blue;
 }
-
-.contenedorPeach img {
-    position: absolute;
-    top: -112px; /* ajusta según la posición vertical que desees */
-    left: 637px; /* ajusta según la posición horizontal que desees */
-    width: 65px; /* ajusta según el tamaño que desees */
-    height: auto; /* ajusta según el tamaño que desees */
+.x2 {
+    color: green;
 }
-.contenedorLuigi img {
-    position: absolute;
-    top: -121px; /* ajusta según la posición vertical que desees */
-    left: 524px; /* ajusta según la posición horizontal que desees */
-    width: 100px; /* ajusta según el tamaño que desees */
-    height: auto; /* ajusta según el tamaño que desees */
-
+.x3 {
+    color: red;
 }
-
-.contenedorMario img {
-    position: absolute;
-    top: -112px; /* ajusta según la posición vertical que desees */
-    left: 732px; /* ajusta según la posición horizontal que desees */
-    width: 65px; /* ajusta según el tamaño que desees */
-    height: auto; /* ajusta según el tamaño que desees */
-
+.x4 {
+    color: navy;
+}
+.x5 {
+    color: brown;
+}
+.x6 {
+    color: teal;
+}
+.x7 {
+    color: black;
+}
+.x8 {
+    color: grey;
 }

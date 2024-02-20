@@ -1,43 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>BUSCAMINAS</title>
-        <link rel="stylesheet" href="minesweeper.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUSCAMINAS</title>
+    <link rel="stylesheet" href="minesweeper.css">
+    <style>
+        body {
+            background-image: url('fondo.webp'); /* Reemplaza 'ruta/de/la/imagen.jpg' con la ruta de tu imagen */
+            background-size: cover;
+            background-repeat: no-repeat; /* Esto evita que la imagen de fondo se repita */
+            /* Opcional: puedes agregar más estilos para el contenido */
+            color: white; /* Cambia el color del texto para que sea legible */
+        }
+    </style>
+</head>
+<body>
+<h1>Banderas: <span id="flags-count">0</span></h1>
+<div id="tablero"></div>
+<div id="difficulty">
+    <button class="btn btn-facil" id="easy" onclick="levelEasy()">Fácil</button>
+    <button class="btn btn-medio" id="medium" onclick="levelMedium()">Medio</button>
+    <button class="btn btn-dificil" id="hard" onclick="levelHard()">Difícil</button>
 
-        <style>
+</div>
 
-            body {
-                background-image: url('fondo.webp'); /* Reemplaza 'ruta/de/la/imagen.jpg' con la ruta de tu imagen */
-                background-size: cover;
-                background-repeat: no-repeat; /* Esto evita que la imagen de fondo se repita */
-                /* Opcional: puedes agregar más estilos para el contenido */
-                color: white; /* Cambia el color del texto para que sea legible */
-
-            }
-        </style>
-    </head>
-
-    <body>
-        <h1>Banderas: <span id="flags-count">0</span></h1>
-        <div id="tablero"></div>
-        <div id="difficulty">
-            <button class="btn btn-facil" id="easy" onclick="levelEasy()">Fácil</button>
-            <button class="btn btn-medio" id="medium" onclick="levelMedium()">Medio</button>
-            <button class="btn btn-dificil" id="hard" onclick="levelHard()">Difícil</button>
-
-        </div>
-        <div class="contenedor contenedorPeach">
-            <img src="Peach2.png" alt="Boton Medio">
-        </div>
-        <div class="contenedor contenedorLuigi">
-            <img src="Luigi2.png" alt="Boton Facil">
-        </div>
-        <div class="contenedor contenedorMario">
-            <img src="Mario2.png" alt="Boton Dificil">
-        </div>
-
-    </body>
-    <script src="minesweeper.js"></script>
+<script src="minesweeper.js"></script>
+</body>
 </html>

@@ -93,13 +93,19 @@ function RightClick() {
 
     let tile = this;
 
-    if (tile.classList.contains("tile-clicked")) {
+    if (tile.classList.contains("tile-clicked") || tile.classList.contains("leave")) {
         return;
     }
 
     if (tile.classList.contains("tile-flagged")) {
         tile.classList.remove("tile-flagged");
-        tile.innerText = "";
+        let img = tile.getElementsByTagName("img")[0];
+        tile.classList.add("leave");
+        img.style.animation = "leave 0.3s";
+        setTimeout(() => {
+            tile.innerText = "";
+            tile.classList.remove("leave");
+        }, 298);
 
         let flagIndex = flaggedTiles.indexOf(tile.id);
         if (flagIndex !== -1) {
@@ -118,6 +124,7 @@ function RightClick() {
             let img = document.createElement("img");
             img.src = "banderita.svg";
             tile.appendChild(img);
+            img.style.animation = "fall 0.5s";
             img.style.width = tileSize + 20 + "px";
             img.style.height = tileSize + 20 + "px";
 

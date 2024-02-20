@@ -28,9 +28,6 @@ function shake() {
 const audio_perder = new Audio("perder.mp3");
 audio_perder.volume = 0.05;
 
-const audio_banderita = new Audio("hmm.mp3");
-audio_banderita.volume = 0.05;
-
 function setMines() {
     // minesLocation.push("2-2");
     // minesLocation.push("2-3");
@@ -78,7 +75,6 @@ function startGame() {
         }
         tablero.push(row);
     }
-
     // Set the width and height of the tablero element
 
     document.getElementById("tablero").style.width = tableroWidth + "px";
@@ -125,6 +121,8 @@ function RightClick() {
             img.style.width = tileSize + 20 + "px";
             img.style.height = tileSize + 20 + "px";
 
+            let audio_banderita = new Audio("hmm.mp3");
+            audio_banderita.volume = 0.05;
 
             audio_banderita.play();
 

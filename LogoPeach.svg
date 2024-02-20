@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="-30 -50 100 50"
+     width="600" height="600">
+
+    <ellipse cx="30" cy="-45" rx="10" ry="15" width="" fill="red" stroke="black" stroke-width="" />
+
+    <circle r="11" fill="white" opacity="" stroke="pink" stroke-width="1"
+            transform="translate(14 -50 )" />
+
+
+    <defs>
+        <g id="corone">
+            <path d="M -6 0 L 6 0 L 7 -10 L 3 -7 L 0 -14 L -3 -7 L -7 -10 L -6 0" fill="gold"/>
+        </g>
+
+    </defs>
+    <use href="#corone" stroke="" transform="scale(1) rotate(0) translate(14 -44)" stroke-width="0.5"  />
+</svg>

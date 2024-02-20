@@ -7,10 +7,9 @@ let flagsCount = minesCount;
 let minesLocation = []; // "2-2", "3-4", "2-1"
 
 let tilesClicked = 0; //goal to click all tiles except the ones containing mines
-let flagbool = false;
+let tileSize = 30; // width and height of each tile
 
 let gameOver = false;
-
 
 
 window.onload = function() {
@@ -20,7 +19,15 @@ window.onload = function() {
 const audio_perder = new Audio("perder.mp3");
 audio_perder.volume = 0.2;
 
-const audio_banderita = new Audio("hmm.mp3");
+const audio_banderita = new Audio("Yoshi.mp3");
+
+const audio_Facil = new Audio("Luigi.mp3");
+
+
+const audio_Dificil = new Audio("Mario.mp3");
+
+
+const audio_Medio = new Audio("Peach.mp3");
 
 function setMines() {
     // minesLocation.push("2-2");
@@ -47,6 +54,10 @@ function startGame() {
     document.getElementById("flags-count").innerText = flagsCount;
     setMines();
 
+
+    let tableroWidth = columns * tileSize;
+    let tableroHeight = rows * tileSize;
+
     //populate our tablero
     for (let r = 0; r < rows; r++) {
         let row = [];
@@ -54,6 +65,9 @@ function startGame() {
             //<div id="0-0"></div>
             let tile = document.createElement("div");
             tile.id = r.toString() + "-" + c.toString();
+            tile.style.width = tileSize - 2 + "px";
+            tile.style.height = tileSize - 2 + "px";
+            tile.style.fontSize = tileSize * 0.70 + "px";
             tile.addEventListener("click", clickTile);
             tile.addEventListener("contextmenu", RightClick);
             document.getElementById("tablero").append(tile);
@@ -64,9 +78,7 @@ function startGame() {
     }
 
     // Set the width and height of the tablero element
-    let tileSize = 50; // width and height of each tile
-    let tableroWidth = columns * tileSize;
-    let tableroHeight = rows * tileSize;
+
     document.getElementById("tablero").style.width = tableroWidth + "px";
     document.getElementById("tablero").style.height = tableroHeight + "px";
 
@@ -89,7 +101,6 @@ function RightClick() {
 
     if (tile.classList.contains("tile-flagged")) {
         tile.classList.remove("tile-flagged");
-        tile.classList.remove("tile-flagged-fade");
         tile.innerText = "";
 
         let flagIndex = flaggedTiles.indexOf(tile.id);
@@ -98,18 +109,19 @@ function RightClick() {
         }
 
         flagsCount += 1;
+
         if (minesLocation.includes(tile.id)) {
             minesCount += 1;
         }
+        document.getElementById("flags-count").innerText = flagsCount;
     } else {
         if (flagsCount > 0) {
             tile.classList.add("tile-flagged");
-            tile.classList.add("tile-flagged-fade");
             let img = document.createElement("img");
             img.src = "banderita.svg";
             tile.appendChild(img);
-            img.style.width = "90px";
-            img.style.height = "90px";
+            img.style.width = tileSize + 20 + "px";
+            img.style.height = tileSize + 20 + "px";
 
 
             audio_banderita.play();
@@ -120,10 +132,9 @@ function RightClick() {
             if (minesLocation.includes(tile.id)) {
                 minesCount -= 1;
             }
+            document.getElementById("flags-count").innerText =flagsCount;
         }
     }
-
-    document.getElementById("flags-count").innerText = flagsCount;
 
     if (flagsCount == 0) {
         document.getElementById("flags-count").innerText = "No flags left";
@@ -159,13 +170,14 @@ function revealMines() {
     for (let r= 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             let tile = tablero[r][c];
-            if (minesLocation.includes(tile.id)) {
+            if (minesLocation.includes(tile.id) && !tile.classList.contains("tile-flagged")) {
+
                 tile.classList.add("tile-bomb");
                 let img = document.createElement("img");
                 img.src = "bomba.svg";
                 tile.appendChild(img);
-                img.style.width = "60px";
-                img.style.height = "60px";
+                img.style.width = tileSize + 10 + "px";
+                img.style.height = tileSize + 10 + "px";
                 tile.style.backgroundColor = "#c44d4d";
                 audio_perder.play();
                 // Apply the shake animation to the #tablero element
@@ -249,38 +261,29 @@ function levelEasy() {
     columns = 10;
     minesCount = 10;
     flagsCount = minesCount;
-
-    document.getElementById("tablero").innerHTML = "";
-    tablero = [];
-    minesLocation = [];
-    tilesClicked = 0;
-    gameOver = false;
-
-    startGame();
+    audio_Facil.play();
+    reset()
 }
 
 function levelMedium() {
-    rows = 15;
-    columns = 22;
+    rows = 18;
+    columns = 18;
     minesCount = 40;
     flagsCount = minesCount;
-
-    document.getElementById("tablero").innerHTML = "";
-    tablero = [];
-    minesLocation = [];
-    tilesClicked = 0;
-    gameOver = false;
-
-    startGame();
-
+    audio_Medio.play();
+    reset()
 }
 
 function levelHard() {
-    rows = 16;
-    columns = 36;
+    rows = 24;
+    columns = 24;
     minesCount = 99;
     flagsCount = minesCount;
+    audio_Dificil.play();
+    reset()
+}
 
+function reset(){
     document.getElementById("tablero").innerHTML = "";
     tablero = [];
     minesLocation = [];

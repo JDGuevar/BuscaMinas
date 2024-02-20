@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="-30 -50 100 50"
+     width="600" height="600">
+
+    <circle r="11" fill="white" opacity="" stroke="green" stroke-width="1"
+            transform="translate(14 -50 )" />
+    <defs>
+        <g id="m">
+            <path d="M 0 0 L 5 0 L -5 0 L -5 -15 L -2 -15 C -2 -11 -2 -7 -2 -3 L 5 -3 L 5 0" fill="green"/>
+        </g>
+
+    </defs>
+    <use href="#m" stroke="" transform="scale(1) rotate(0) translate(14.5 -43)" stroke-width="0.5"  />
+</svg>

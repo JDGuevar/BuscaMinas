@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="-75 -75 150 150"
+     width="600" height="600">
+
+    <use href="#bomba_parte5" stroke="black" stroke-width="0.6" transform="scale(4.5) rotate(5) translate(1 9)" />
+    <circle r="33" fill="black" opacity="" stroke="black" stroke-width="6"/>
+
+
+    <defs>
+        <g id="bomba_parte1" fill="url(#gradiente2)">
+            <path d="M -3 0 C -3 -0.6667 -3 -1.3333 -2 -2 C -1 -2 1 -2 2 -2 C 3 -1.3333 3 -0.6667 3 0 "/>
+        </g>
+        <g id="bomba_parte2">
+            <path d="M 0 -2 C 0.3333 -2 0.6667 -2 1 -2 C 1.3333 -3.6667 0 -5 3 -5 C 5 -4 3 -1 3 -1 C 3 -1 5 2 3 3 C 0 3 1.6667 1.3333 1 0 L 0 0"/>
+        </g>
+        <g id="bomba_parte3" fill="url(#gradiente3)">
+            <path d="M -1 -6 C -1 -2 -1 -2 0 -2 C 1 -2 1 -2 1 -6 C 1 -8 -1 -8 -1 -6"/>
+        </g>
+        <g id="bomba_parte4" fill="url(#gradiente3)">
+            <path d="M -1 -4 C -1 -2 -2 -4 0 -2 C 1 -2 0 -4 1 -5 C 1 -7 -1 -8 -1 -4"/>
+        </g>
+        <g id="bomba_parte5" fill="url(#gradiente)">
+            <path d="M 0 0 C -2 1 -5 1 -7 0 C -8 -4 -3 -4 -3 -4 C -1 -4 1 -2 0 0"/>
+        </g>
+
+        <linearGradient id="gradiente" >
+            <stop stop-color="#fff000" offset="0%" stop-opacity="1"/>
+            <stop stop-color="#ffff56" offset="10%" stop-opacity="1"/>
+            <stop stop-color="#ffc340" offset="100%" stop-opacity="1"/>
+        </linearGradient>
+
+        <linearGradient id="gradiente2" >
+            <stop stop-color="blue" offset="0%" stop-opacity="1"/>
+            <stop stop-color="#000099" offset="10%" stop-opacity="1"/>
+            <stop stop-color="blue" offset="100%" stop-opacity="1"/>
+        </linearGradient>
+
+        <linearGradient id="gradiente3" >
+            <stop stop-color="blue" offset="0%" stop-opacity="1"/>
+            <stop stop-color="grey" offset="10%" stop-opacity="1"/>
+            <stop stop-color="white" offset="100%" stop-opacity="1"/>
+        </linearGradient>
+
+    </defs>
+
+
+    <use href="#bomba_parte4" stroke="black" transform="scale(4) rotate(10) translate(0.5 -7)" stroke-width="0.5" />
+    <use href="#bomba_parte1" stroke="black" transform="scale(3) rotate(10) translate(0 -11)" />
+
+    <use href="#bomba_parte5" stroke="black" stroke-width="0.6" transform="scale(4.5) rotate(5) translate(7 9)" />
+
+    <use href="#bomba_parte3" stroke="black" stroke-width="0.3" transform="scale(4) rotate(10) translate(-5 4)" />
+    <use href="#bomba_parte3" stroke="black" stroke-width="0.3" transform="scale(4) rotate(10) translate(1 4)" />
+    <use href="#bomba_parte2" stroke="black" transform="scale(5) rotate(-3) translate(7 1 )"
+         stroke-width="0.5" fill="url(#gradiente)"/>
+
+    <circle r="3" fill="white" opacity="" stroke="black" stroke-width="2" transform="translate(47 -13 )"/>
+    <circle r="3" fill="white" opacity="" stroke="black" stroke-width="2" transform="translate(48.5 9 )"/>
+
+
+
+</svg>

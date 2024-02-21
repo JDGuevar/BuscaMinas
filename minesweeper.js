@@ -45,8 +45,10 @@ function setMines() {
 function startGame() {
     document.getElementById("flags-count").innerText = flagsCount;
     setMines();
-    let tableroWidth = columns * tileSize;
-    let tableroHeight = rows * tileSize;
+
+    document.getElementById("tablero").style.gridTemplateRows = "repeat(" +rows+" , 1fr)";
+    document.getElementById("tablero").style.gridTemplateColumns = "repeat(" +columns+" , 1fr)";
+
     //populate our tablero
     for (let r = 0; r < rows; r++) {
         let row = [];
@@ -54,6 +56,8 @@ function startGame() {
             //<div id="0-0"></div>
             let tile = document.createElement("div");
             tile.id = r.toString() + "-" + c.toString();
+            tile.gridRow = r + 1;
+            tile.gridColumn = c + 1;
             tile.style.width = tileSize - 2 + "px";
             tile.style.height = tileSize - 2 + "px";
             tile.style.fontSize = tileSize * 0.70 + "px";
@@ -65,8 +69,7 @@ function startGame() {
         tablero.push(row);
     }
     // Set the width and height of the tablero element
-    document.getElementById("tablero").style.width = tableroWidth + "px";
-    document.getElementById("tablero").style.height = tableroHeight + "px";
+
     console.log(tablero);
 }
 
@@ -127,13 +130,9 @@ function RightClick() {
     }
     if (flagsCount == 0) {
         document.getElementById("flags-count").innerText = "No flags left";
-        if (minesCount == 0 && tilesClicked == (rows * columns) - mines && flagsCount == 0) {
-            document.getElementById("flags-count").innerText = "Congratulations! You won!";
-            gameOver = true;
-            audio_victoria.play();
-            shake();
-        }
+        win();
     }
+
 }
 
 function clickTile() {
@@ -147,6 +146,10 @@ function clickTile() {
         revealMines();
         return;
     }
+    let audio_destapar = new Audio("destapar.mp3");
+    audio_destapar.volume = 0.05;
+    audio_destapar.play();
+
     let coords = tile.id.split("-"); // "0-0" -> ["0", "0"]
     let r = parseInt(coords[0]);
     let c = parseInt(coords[1]);
@@ -188,12 +191,7 @@ function checkMine(r, c) {
     }
     tablero[r][c].classList.add("tile-clicked");
     tilesClicked += 1;
-    if (minesCount == 0 && tilesClicked == (rows * columns) - mines && flagsCount == 0) {
-        document.getElementById("flags-count").innerText = "Congratulations! You won!";
-        gameOver = true;
-        audio_victoria.play();
-        shake();
-    }
+    win();
     let minesFound = 0;
     //top 3
     minesFound += checkTile(r - 1, c - 1);      //top left
@@ -236,7 +234,6 @@ function checkTile(r, c) {
     return 0;
 }
 
-
 const audio_Facil = new Audio("Luigi.mp3");
 audio_Facil.volume = 0.1;
 
@@ -246,28 +243,52 @@ audio_Dificil.volume = 0.2;
 const audio_Medio = new Audio("Peach.mp3");
 audio_Medio.volume = 0.2;
 
-function levelEasy() {
+function pequeño() {
     rows = 10;
     columns = 10;
-    minesCount = 10;
+    let valor = document.getElementById("difficultyRange").value;
+    switch (valor) {
+        case "1": mines = 5;
+        break;
+        case "2": mines = 10;
+        break;
+        case "3": mines = 15;
+    }
+    minesCount = mines
     flagsCount = minesCount;
     audio_Facil.play();
     reset()
 }
 
-function levelMedium() {
+function mediano() {
     rows = 18;
     columns = 18;
-    minesCount = 40;
+    let valor = document.getElementById("difficultyRange").value;
+    switch (valor) {
+        case "1": mines = 20;
+            break;
+        case "2": mines = 35;
+            break;
+        case "3": mines = 50;
+    }
+    minesCount = mines
     flagsCount = minesCount;
     audio_Medio.play();
     reset()
 }
 
-function levelHard() {
+function grande() {
     rows = 24;
     columns = 24;
-    minesCount = 99;
+    let valor = document.getElementById("difficultyRange").value;
+    switch (valor) {
+        case "1": mines = 50;
+            break;
+        case "2": mines = 100;
+            break;
+        case "3": mines = 200;
+    }
+    minesCount = mines
     flagsCount = minesCount;
     audio_Dificil.play();
     reset()
@@ -281,4 +302,30 @@ function reset(){
     gameOver = false;
 
     startGame();
+}
+
+function win(){
+    if (minesCount == 0 && tilesClicked == (rows * columns) - mines && flagsCount == 0) {
+        document.getElementById("flags-count").innerText = "Congratulations! You won!";
+        gameOver = true;
+        audio_victoria.play();
+        shake();
+    }
+    else return;
+}
+
+function selectdif(){
+    let valor = document.getElementById("difficultyRange").value;
+    let dificultad = document.querySelectorAll("h1");
+    switch (valor) {
+        case "1":
+            dificultad[2].innerText = "Fácil";
+            break;
+        case "2":
+            dificultad[2].innerText = "Medio";
+            break;
+        case "3":
+            dificultad[2].innerText = "Difícil";
+            break;
+    }
 }

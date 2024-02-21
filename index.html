@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,21 +25,24 @@
 <div class="todo">
 
     <div id="tablero"></div>
+
     <div class="boton-contador">
     <h1>Banderas: <span id="flags-count">0</span></h1>
     <div id="difficulty">
-        <h1 id ="texto-dificultad">Selecciona la dificultad</h1>
+        <h1 class="texto-dificultad">Selecciona la dificultad</h1>
         <br>
-        <button class="btn btn-facil" id="easy" onclick="levelEasy()"><img src="LogoLuigi.svg"> Fácil <img
-                src="LogoLuigi.svg"></button>
+        <button class="btn btn-facil" id="easy" onclick="pequeño()"><img src="LogoLuigi.svg" alt=""> 10 x 10 <img
+                src="LogoLuigi.svg" alt=""></button>
         <br>
-        <button class="btn btn-medio" id="medium" onclick="levelMedium()"><img src="LogoPeach.svg"> Medio <img
-                src="LogoPeach.svg"></button>
+        <button class="btn btn-medio" id="medium" onclick="mediano()"><img src="LogoPeach.svg" alt=""> 18 x 18 <img
+                src="LogoPeach.svg" alt=""></button>
         <br>
-        <button class="btn btn-dificil" id="hard" onclick="levelHard()"><img src="LogoMario.svg"> Difícil <img
-                src="LogoMario.svg"></button>
+        <button class="btn btn-dificil" id="hard" onclick="grande()"><img src="LogoMario.svg" alt=""> 24 x 24 <img
+                src="LogoMario.svg" alt=""></button>
 
     </div>
+        <h1 class ="texto-dificultad">Selecciona la dificultad</h1>
+        <input id="difficultyRange" type="range" min="1" max="3" step="1" onchange="selectdif()">
     </div>
 </div>
 <script src="minesweeper.js"></script>

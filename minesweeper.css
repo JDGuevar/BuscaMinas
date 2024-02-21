@@ -29,14 +29,19 @@ body {
     text-align: center;
 }
 #tablero{
-    border: 10px solid midnightblue;
+    border: 7px solid darkblue;
+    border-radius: 20px;
     background-color: lightgray;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
 }
+
+
 #tablero div {
-    border: 1px solid whitesmoke;
+    border: 1px solid darkblue;
+    border-radius: 2px;
+
     /* text */
     display: flex;
     justify-content: center;
@@ -45,28 +50,38 @@ body {
 .tile-clicked {
     background-color: darkgrey;
 }
+
+img{
+    width: 12px;
+    height: 12px;
+}
+
+
+
 .btn-facil {
-    background-color: #007bff;
+    border-color: #008000;
     color: #fff;
 }
+
 .btn-medio {
-    background-color: #6c757d;
+    border-color: #FF69B4;
     color: #fff;
-    margin-left: 10px; /* solo para separar los botones en el ejemplo */
+    margin-left: 10px;
+
 }
 .btn-dificil {
-    background-color: darkred;
+    border-color: #FF0000;
     color: #fff;
-    margin-left: 10px; /* solo para separar los botones en el ejemplo */
+    margin-left: 10px;
 }
 
 .btn {
-    border: none;
     border-radius: 20px;
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 80px;
+    margin-bottom: 10px;
+    background-color: transparent;
 }
 
 .x1 {

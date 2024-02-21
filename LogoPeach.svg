@@ -1,18 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="-30 -50 100 50"
+     viewBox="2 -62 24 24"
      width="600" height="600">
-
-    <ellipse cx="30" cy="-45" rx="10" ry="15" width="" fill="red" stroke="black" stroke-width="" />
-
-    <circle r="11" fill="white" opacity="" stroke="pink" stroke-width="1"
-            transform="translate(14 -50 )" />
-
 
     <defs>
         <g id="corone">
-            <path d="M -6 0 L 6 0 L 7 -10 L 3 -7 L 0 -14 L -3 -7 L -7 -10 L -6 0" fill="gold"/>
+            <path d="M -6 0 L 6 0 L 7 -10 L 3 -7 L 0 -14 L -3 -7 L -7 -10 L -6 0" fill="gold" stroke-width="" stroke="#efb810"/>
         </g>
-
     </defs>
+
+    <circle r="11" fill="white" opacity="" stroke="#f963aF" stroke-width="1"
+            transform="translate(14 -50 )" />
     <use href="#corone" stroke="" transform="scale(1) rotate(0) translate(14 -44)" stroke-width="0.5"  />
+    <rect x="7" y="-48" width="14" height="1" fill="#efb810"
+          transform="rotate(0)" />
+    <ellipse cx="30" cy="-45" rx="3" ry="2"  fill="#2196f3" stroke="#155db1" stroke-width="0.4"
+             transform="rotate(88) translate(-68 22) scale(0.7)"  />
+    <ellipse cx="30" cy="-45" rx="3" ry="2"  fill="red" stroke="#c20000" stroke-width="0.4"
+             transform="rotate(88) translate(-68 16) scale(0.7)"  />
+    <ellipse cx="30" cy="-45" rx="3" ry="2"  fill="#2196f3" stroke="#155db1" stroke-width="0.4"
+             transform="rotate(88) translate(-68 10) scale(0.7)"  />
 </svg>

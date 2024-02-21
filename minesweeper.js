@@ -22,6 +22,8 @@ function shake() {
 const audio_perder = new Audio("perder.mp3");
 audio_perder.volume = 0.05;
 
+const audio_victoria = new Audio("super-mario-castle-bros.mp3");
+audio_victoria.volume = 0.15;
 function setMines() {
     // minesLocation.push("2-2");
     // minesLocation.push("2-3");
@@ -188,6 +190,7 @@ function checkMine(r, c) {
     if (minesCount == 0 && tilesClicked == (rows * columns) - mines && flagsCount == 0) {
         document.getElementById("flags-count").innerText = "Congratulations! You won!";
         gameOver = true;
+        audio_victoria.play();
         shake();
     }
     let minesFound = 0;
@@ -232,38 +235,49 @@ function checkTile(r, c) {
     return 0;
 }
 
+
+const audio_Facil = new Audio("Luigi.mp3");
+audio_Facil.volume = 0.1;
+
+const audio_Dificil = new Audio("Mario.mp3");
+audio_Dificil.volume = 0.2;
+
+const audio_Medio = new Audio("Peach.mp3");
+audio_Medio.volume = 0.2;
+
 function levelEasy() {
     rows = 10;
     columns = 10;
-    mines = 10;
-    minesCount = mines;
+    minesCount = 10;
     flagsCount = minesCount;
+    audio_Facil.play();
     reset()
 }
 
 function levelMedium() {
     rows = 18;
     columns = 18;
-    mines = 40;
-    minesCount = mines;
+    minesCount = 40;
     flagsCount = minesCount;
+    audio_Medio.play();
     reset()
 }
 
 function levelHard() {
     rows = 24;
     columns = 24;
-    mines = 99;
-    minesCount = mines;
+    minesCount = 99;
     flagsCount = minesCount;
+    audio_Dificil.play();
     reset()
 }
 
-function reset() {
+function reset(){
     document.getElementById("tablero").innerHTML = "";
     tablero = [];
     minesLocation = [];
     tilesClicked = 0;
     gameOver = false;
+
     startGame();
 }

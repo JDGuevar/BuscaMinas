@@ -121,4 +121,6 @@ img{
 .boton-contador{
     float: left;
     margin: 20px;
+    background-color: black;
+    padding: 4px;
 }

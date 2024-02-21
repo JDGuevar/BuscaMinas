@@ -38,6 +38,12 @@ body {
     float: left;
 }
 
+#texto-dificultad{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px;
+}
+
 
 #tablero div {
     border: 1px solid darkblue;
@@ -65,22 +71,19 @@ img{
 
 .btn-facil {
     border-color: #008000;
-    color: #fff;
 }
 
 .btn-medio {
     border-color: #FF69B4;
-    color: #fff;
-    margin-left: 10px;
 
 }
 .btn-dificil {
     border-color: #FF0000;
-    color: #fff;
-    margin-left: 10px;
 }
 
 .btn {
+    width: 122px;
+    height: 42px;
     border-radius: 20px;
     padding: 10px 20px;
     cursor: pointer;
@@ -115,12 +118,19 @@ img{
 }
 
 .todo{
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
 }
 
 .boton-contador{
+    border: 7px solid darkblue;
     float: left;
     margin: 20px;
-    background-color: black;
-    padding: 4px;
+    background-color: darkgrey;
+    padding: 20px;
+    width: 245px;
+    height: fit-content;
+    border-radius: 20px;
 }

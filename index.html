@@ -11,7 +11,7 @@
             background-size: cover;
             background-repeat: no-repeat; /* Esto evita que la imagen de fondo se repita */
             /* Opcional: puedes agregar más estilos para el contenido */
-            color: white; /* Cambia el color del texto para que sea legible */
+            color: black; /* Cambia el color del texto para que sea legible */
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -28,8 +28,10 @@
     <div class="boton-contador">
     <h1>Banderas: <span id="flags-count">0</span></h1>
     <div id="difficulty">
+        <h1 id ="texto-dificultad">Selecciona la dificultad</h1>
+        <br>
         <button class="btn btn-facil" id="easy" onclick="levelEasy()"><img src="LogoLuigi.svg"> Fácil <img
-                class="img-mario" src="LogoLuigi.svg"></button>
+                src="LogoLuigi.svg"></button>
         <br>
         <button class="btn btn-medio" id="medium" onclick="levelMedium()"><img src="LogoPeach.svg"> Medio <img
                 src="LogoPeach.svg"></button>

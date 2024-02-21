@@ -111,8 +111,8 @@ function RightClick() {
             img.src = "banderita.svg";
             tile.appendChild(img);
             img.style.animation = "fall 0.5s";
-            img.style.width = tileSize + 20 + "px";
-            img.style.height = tileSize + 20 + "px";
+            img.style.width = tileSize + "px";
+            img.style.height = tileSize + "px";
 
             let audio_banderita = new Audio("hmm.mp3");
             audio_banderita.volume = 0.05;
@@ -130,6 +130,7 @@ function RightClick() {
         if (minesCount == 0 && tilesClicked == (rows * columns) - mines && flagsCount == 0) {
             document.getElementById("flags-count").innerText = "Congratulations! You won!";
             gameOver = true;
+            audio_victoria.play();
             shake();
         }
     }

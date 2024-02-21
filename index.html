@@ -12,20 +12,34 @@
             background-repeat: no-repeat; /* Esto evita que la imagen de fondo se repita */
             /* Opcional: puedes agregar más estilos para el contenido */
             color: white; /* Cambia el color del texto para que sea legible */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
-<h1>Banderas: <span id="flags-count">0</span></h1>
-<div id="difficulty">
-    <button class="btn btn-facil" id="easy" onclick="levelEasy()"><img src="LogoLuigi.svg"> Fácil <img class="img-mario" src="LogoLuigi.svg"></button>
-    <button class="btn btn-medio" id="medium" onclick="levelMedium()"><img src="LogoPeach.svg"> Medio <img src="LogoPeach.svg"></button>
-    <button class="btn btn-dificil" id="hard" onclick="levelHard()"><img src="LogoMario.svg"> Difícil <img src="LogoMario.svg"> </button>
+<div class="todo">
 
+    <div id="tablero"></div>
+    <div class="boton-contador">
+    <h1>Banderas: <span id="flags-count">0</span></h1>
+    <div id="difficulty">
+        <button class="btn btn-facil" id="easy" onclick="levelEasy()"><img src="LogoLuigi.svg"> Fácil <img
+                class="img-mario" src="LogoLuigi.svg"></button>
+        <br>
+        <button class="btn btn-medio" id="medium" onclick="levelMedium()"><img src="LogoPeach.svg"> Medio <img
+                src="LogoPeach.svg"></button>
+        <br>
+        <button class="btn btn-dificil" id="hard" onclick="levelHard()"><img src="LogoMario.svg"> Difícil <img
+                src="LogoMario.svg"></button>
+
+    </div>
+    </div>
 </div>
-<div id="tablero"></div>
-
-
 <script src="minesweeper.js"></script>
 </body>
 </html>

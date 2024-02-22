@@ -87,8 +87,22 @@ function RightClick() {
         return;
     }
 
+    if (tile.classList.contains("tile-question")) {
+        tile.classList.remove("tile-question");
+        tile.classList.add("leave");
+        let img = tile.getElementsByTagName("img")[0];
+        img.style.animation = "leave 0.3s";
+        setTimeout(() => {
+            tile.removeChild(img);
+            tile.classList.remove("leave");
+        }, 290);
+        return;
+    }
+
     if (tile.classList.contains("tile-flagged")) {
         tile.classList.remove("tile-flagged");
+
+        tile.classList.add("tile-question");
 
         let img = tile.getElementsByTagName("img")[0];
         tile.classList.add("leave");
@@ -96,7 +110,7 @@ function RightClick() {
         setTimeout(() => {
             tile.innerText = "";
             tile.classList.remove("leave");
-        }, 298);
+        }, 290);
 
         let flagIndex = flaggedTiles.indexOf(tile.id);
         if (flagIndex !== -1) {
@@ -107,31 +121,50 @@ function RightClick() {
             minesCount += 1;
         }
         document.getElementById("flags-count").innerText = flagsCount;
-    } else {
-        if (flagsCount > 0) {
-            tile.classList.add("tile-flagged");
-            let img = document.createElement("img");
-            img.src = "banderita.svg";
-            tile.appendChild(img);
-            img.style.animation = "fall 0.5s";
-            img.style.width = tileSize + "px";
-            img.style.height = tileSize + "px";
 
-            let audio_banderita = new Audio("hmm.mp3");
-            audio_banderita.volume = 0.05;
-            audio_banderita.play();
-            flaggedTiles.push(tile.id);
-            flagsCount -= 1;
-            if (minesLocation.includes(tile.id)) {
-                minesCount -= 1;
-            }
-            document.getElementById("flags-count").innerText = flagsCount;
-        }
+        setTimeout(() => {
+            let newimg = document.createElement("img");
+            newimg.src = "Pregunte.svg";
+
+            tile.appendChild(newimg);
+
+            newimg.style.animation = "fall 0.5s";
+            newimg.style.width = tileSize - 5 + "px";
+            newimg.style.height = tileSize - 5 + "px";
+
+            let audio_pregunte = new Audio("hmm.mp3");
+            audio_pregunte.volume = 0.05;
+            audio_pregunte.play();
+        }  , 300);
+        return;
     }
+
+    if (!tile.classList.contains("tile-question") && !tile.classList.contains("tile-flagged") && flagsCount > 0) {
+
+        tile.classList.add("tile-flagged");
+        let img = document.createElement("img");
+        img.src = "banderita.svg";
+        tile.appendChild(img);
+        img.style.animation = "fall 0.5s";
+        img.style.width = tileSize + "px";
+        img.style.height = tileSize + "px";
+
+        let audio_banderita = new Audio("bandera.mp3");
+        audio_banderita.volume = 0.05;
+        audio_banderita.play();
+        flaggedTiles.push(tile.id);
+        flagsCount -= 1;
+        if (minesLocation.includes(tile.id)) {
+            minesCount -= 1;
+        }
+        document.getElementById("flags-count").innerText = flagsCount;
+    }
+
     if (flagsCount == 0) {
         document.getElementById("flags-count").innerText = "No flags left";
         win();
     }
+
 
 }
 

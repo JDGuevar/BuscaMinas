@@ -129,8 +129,8 @@ function RightClick() {
             tile.appendChild(newimg);
 
             newimg.style.animation = "fall 0.5s";
-            newimg.style.width = tileSize - 5 + "px";
-            newimg.style.height = tileSize - 5 + "px";
+            newimg.style.width = tileSize - 10 + "px";
+            newimg.style.height = tileSize - 10 + "px";
 
             let audio_pregunte = new Audio("hmm.mp3");
             audio_pregunte.volume = 0.05;
@@ -193,7 +193,7 @@ function revealMines() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             let tile = tablero[r][c];
-            if (minesLocation.includes(tile.id) && !tile.classList.contains("tile-flagged")) {
+            if (minesLocation.includes(tile.id) && !tile.classList.contains("tile-flagged") && !tile.classList.contains("tile-question")) {
                 tile.classList.add("tile-bomb");
                 let img = document.createElement("img");
                 img.src = "bomba.svg";
@@ -209,7 +209,7 @@ function revealMines() {
                     document.getElementById("tablero").style.animation = "";
                 }, 500);
             }
-            if (minesLocation.includes(tile.id) && tile.classList.contains("tile-flagged")) tile.style.backgroundColor = "#c44d4d";
+            if (minesLocation.includes(tile.id) && (tile.classList.contains("tile-flagged") || tile.classList.contains("tile-question"))) tile.style.backgroundColor = "#c44d4d";
         }
     }
 }
